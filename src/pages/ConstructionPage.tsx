@@ -1,337 +1,275 @@
-import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Icon } from '../components/Icon'
-import { images } from '../data/content'
-
-const trades = ['Electrician', 'Plumber', 'Mason', 'Carpenter', 'Painter'] as const
-
-const workersByTrade: Record<
-  (typeof trades)[number],
-  Array<{
-    name: string
-    role: string
-    status: 'Available Now' | 'In Project'
-    rating: string
-    reviews: number
-    exp: string
-    rate: string
-    bio: string
-    image: string
-  }>
-> = {
-  Electrician: [
-    {
-      name: 'Marcus Thorne',
-      role: 'Master Electrician',
-      status: 'Available Now',
-      rating: '4.9',
-      reviews: 124,
-      exp: '15 yrs',
-      rate: '$85',
-      bio: 'Smart home automation and industrial panel expertise.',
-      image: images.workerMarcus,
-    },
-    {
-      name: 'Elena Rodriguez',
-      role: 'Senior Electrician',
-      status: 'In Project',
-      rating: '5.0',
-      reviews: 89,
-      exp: '12 yrs',
-      rate: '$92',
-      bio: 'Solar integration and energy-efficient retrofits.',
-      image: images.workerElena,
-    },
-    {
-      name: 'David Chen',
-      role: 'Journeyman Electrician',
-      status: 'Available Now',
-      rating: '4.2',
-      reviews: 45,
-      exp: '8 yrs',
-      rate: '$65',
-      bio: 'Lighting design and commercial circuit work.',
-      image: images.workerDavid,
-    },
-  ],
-  Plumber: [
-    {
-      name: 'Marcus Thorne',
-      role: 'Master Plumber',
-      status: 'Available Now',
-      rating: '4.8',
-      reviews: 98,
-      exp: '14 yrs',
-      rate: '$78',
-      bio: 'High-rise riser systems and luxury bathroom fit-outs.',
-      image: images.workerMarcus,
-    },
-    {
-      name: 'Elena Rodriguez',
-      role: 'Senior Plumber',
-      status: 'Available Now',
-      rating: '4.7',
-      reviews: 72,
-      exp: '11 yrs',
-      rate: '$74',
-      bio: 'Sustainable water systems and leak diagnostics.',
-      image: images.workerElena,
-    },
-    {
-      name: 'David Chen',
-      role: 'Plumbing Specialist',
-      status: 'In Project',
-      rating: '4.4',
-      reviews: 51,
-      exp: '7 yrs',
-      rate: '$60',
-      bio: 'Residential rough-ins and fixture installations.',
-      image: images.workerDavid,
-    },
-  ],
-  Mason: [
-    {
-      name: 'Marcus Thorne',
-      role: 'Master Mason',
-      status: 'Available Now',
-      rating: '4.9',
-      reviews: 110,
-      exp: '18 yrs',
-      rate: '$88',
-      bio: 'Stone cladding, structural brickwork, and restoration.',
-      image: images.workerMarcus,
-    },
-    {
-      name: 'Elena Rodriguez',
-      role: 'Senior Mason',
-      status: 'In Project',
-      rating: '4.8',
-      reviews: 66,
-      exp: '13 yrs',
-      rate: '$80',
-      bio: 'Architectural concrete finishes and custom detailing.',
-      image: images.workerElena,
-    },
-    {
-      name: 'David Chen',
-      role: 'Masonry Craftsman',
-      status: 'Available Now',
-      rating: '4.5',
-      reviews: 40,
-      exp: '9 yrs',
-      rate: '$68',
-      bio: 'Fireplace rebuilds and exterior wall systems.',
-      image: images.workerDavid,
-    },
-  ],
-  Carpenter: [
-    {
-      name: 'Marcus Thorne',
-      role: 'Master Carpenter',
-      status: 'Available Now',
-      rating: '4.9',
-      reviews: 132,
-      exp: '16 yrs',
-      rate: '$90',
-      bio: 'Custom millwork and structural timber framing.',
-      image: images.workerMarcus,
-    },
-    {
-      name: 'Elena Rodriguez',
-      role: 'Finish Carpenter',
-      status: 'Available Now',
-      rating: '5.0',
-      reviews: 77,
-      exp: '12 yrs',
-      rate: '$85',
-      bio: 'Cabinetry, trim, and bespoke interior joinery.',
-      image: images.workerElena,
-    },
-    {
-      name: 'David Chen',
-      role: 'Carpenter',
-      status: 'In Project',
-      rating: '4.3',
-      reviews: 38,
-      exp: '6 yrs',
-      rate: '$62',
-      bio: 'Framing packages and site-built features.',
-      image: images.workerDavid,
-    },
-  ],
-  Painter: [
-    {
-      name: 'Marcus Thorne',
-      role: 'Lead Painter',
-      status: 'Available Now',
-      rating: '4.7',
-      reviews: 91,
-      exp: '12 yrs',
-      rate: '$70',
-      bio: 'Decorative finishes and large-scale commercial coats.',
-      image: images.workerMarcus,
-    },
-    {
-      name: 'Elena Rodriguez',
-      role: 'Senior Painter',
-      status: 'Available Now',
-      rating: '4.9',
-      reviews: 84,
-      exp: '10 yrs',
-      rate: '$72',
-      bio: 'Low-VOC interiors and precision color matching.',
-      image: images.workerElena,
-    },
-    {
-      name: 'David Chen',
-      role: 'Painter',
-      status: 'In Project',
-      rating: '4.1',
-      reviews: 29,
-      exp: '5 yrs',
-      rate: '$55',
-      bio: 'Exterior envelopes and protective coatings.',
-      image: images.workerDavid,
-    },
-  ],
-}
 
 export function ConstructionPage() {
-  const [trade, setTrade] = useState<(typeof trades)[number]>('Electrician')
-  const workers = useMemo(() => workersByTrade[trade], [trade])
-
   return (
     <>
-      <section className="container-site py-12">
-        <span className="mb-4 inline-block rounded-full bg-tertiary-fixed px-4 py-1 text-label text-on-tertiary-fixed-variant">
-          Service Pillar: Construction
-        </span>
-        <h1 className="text-display mb-4 max-w-3xl text-primary">
-          Expert Construction and <span className="text-on-tertiary-container">Renovation</span>{' '}
-          Services
-        </h1>
-        <p className="mb-8 max-w-2xl text-body-lg text-on-surface-variant">
-          Connect with highly vetted master craftsmen. From structural masonry to precision
-          electrical engineering, hire professionals who deliver lasting quality.
-        </p>
-        <div className="mb-10 flex flex-wrap gap-4">
-          <Link
-            to="/contact"
-            className="rounded bg-on-tertiary-container px-6 py-3 text-label text-white transition hover:opacity-90"
-          >
-            Start Project
-          </Link>
-          <Link
-            to="/portfolio"
-            className="rounded border border-outline-variant px-6 py-3 text-label transition hover:bg-surface-container"
-          >
-            Browse Portfolio
-          </Link>
-        </div>
-      </section>
-
-      <div className="sticky top-20 z-40 border-y border-outline-variant bg-surface-container-lowest">
-        <div className="container-site flex gap-6 overflow-x-auto py-3">
-          {trades.map((item) => (
-            <button
-              key={item}
-              type="button"
-              onClick={() => setTrade(item)}
-              className={`whitespace-nowrap pb-1 text-label transition ${
-                trade === item
-                  ? 'border-b-2 border-on-tertiary-container text-on-tertiary-container'
-                  : 'text-on-surface-variant'
-              }`}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <section className="container-site py-12">
-        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <div>
-            <h2 className="text-headline-lg mb-2 text-primary">Certified Master {trade}s</h2>
-            <p className="text-on-surface-variant">
-              Vetted professionals specialized in residential and commercial work.
-            </p>
-          </div>
-          <select className="rounded border border-outline-variant bg-surface-container-lowest px-3 py-2 text-sm">
-            <option>Years of Experience</option>
-            <option>Highest Rated</option>
-            <option>Lowest Rate</option>
-          </select>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {workers.map((worker) => (
-            <article
-              key={`${trade}-${worker.name}`}
-              className="overflow-hidden rounded border border-outline-variant bg-surface-container-lowest"
-            >
-              <img src={worker.image} alt={worker.name} className="h-52 w-full object-cover" />
-              <div className="p-5">
-                <div className="mb-2 flex items-start justify-between gap-2">
-                  <div>
-                    <h3 className="font-headline text-xl text-primary">{worker.name}</h3>
-                    <p className="text-sm text-on-surface-variant">{worker.role}</p>
+      {/* TopNavBar */}
+      <header className="w-full top-0 sticky z-50 bg-surface-container-lowest border-b border-outline-variant">
+      <div className="flex justify-between items-center max-w-max-width mx-auto px-margin-desktop h-20">
+      <div className="font-headline-md text-headline-md font-bold text-primary tracking-tighter">
+                      Structura
                   </div>
-                  <span
-                    className={`rounded px-2 py-1 text-[10px] uppercase ${
-                      worker.status === 'Available Now'
-                        ? 'bg-secondary-container text-on-secondary-container'
-                        : 'bg-tertiary-fixed text-on-tertiary-fixed-variant'
-                    }`}
-                  >
-                    {worker.status}
-                  </span>
-                </div>
-                <div className="mb-3 flex flex-wrap gap-3 text-xs text-on-surface-variant">
-                  <span className="flex items-center gap-1">
-                    <Icon name="star" filled className="text-[16px] text-ochre" />
-                    {worker.rating} ({worker.reviews})
-                  </span>
-                  <span>{worker.exp}</span>
-                  <span className="font-headline text-primary">{worker.rate}/hr</span>
-                </div>
-                <p className="mb-4 text-sm text-on-surface-variant">{worker.bio}</p>
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    className="flex-1 rounded bg-primary py-2 text-label text-on-primary transition hover:opacity-90"
-                  >
-                    Hire Now
-                  </button>
-                  <button
-                    type="button"
-                    className="flex-1 rounded border border-outline-variant py-2 text-label transition hover:bg-surface-container"
-                  >
-                    View Schedule
-                  </button>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+      <nav className="hidden md:flex items-center gap-lg">
+      <Link className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" to="/">Home</Link>
+      <Link className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" to="/properties">Properties</Link>
+      <Link className="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" to="/construction">Construction</Link>
+      <Link className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" to="/about">About</Link>
+      <Link className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" to="/contact">Contact</Link>
+      </nav>
+      <div className="flex items-center gap-md">
+      <div className="hidden lg:flex items-center bg-surface-container-low px-sm py-xs rounded border border-outline-variant">
+      <span className="material-symbols-outlined text-on-surface-variant mr-xs">search</span>
+      <input className="bg-transparent border-none focus:ring-0 text-body-sm w-48" placeholder="Find professionals..." type="text"/>
+      </div>
+      <button className="bg-primary text-on-primary px-lg py-xs font-label-md rounded hover:opacity-80 transition-all">
+                          Inquire
+                      </button>
+      </div>
+      </div>
+      </header>
+      <main>
+      {/* Hero Section */}
+      <section className="bg-surface-container-lowest py-xl">
+      <div className="max-w-max-width mx-auto px-margin-desktop">
+      <div className="max-w-3xl">
+      <h1 className="font-display-lg text-display-lg mb-md">
+                              Expert Construction and Renovation Services
+                          </h1>
+      <p className="font-body-lg text-body-lg text-on-surface-variant mb-lg">
+                              Connect with highly vetted master craftsmen for your next architectural project. From structural masonry to precision electrical engineering, we deliver excellence at every scale.
+                          </p>
+      </div>
+      </div>
       </section>
-
-      <section className="border-t border-outline-variant bg-surface-container-low py-14">
-        <div className="container-site grid grid-cols-1 gap-8 md:grid-cols-4">
-          {[
-            { icon: 'verified_user', title: 'Vetted Expertise', copy: 'Background checks and skill assessments on every professional.' },
-            { icon: 'policy', title: 'Project Insurance', copy: 'Full liability bonding for peace of mind on every site.' },
-            { icon: 'account_balance', title: 'Escrow Protection', copy: 'Funds released only on milestone sign-off.' },
-            { icon: 'support_agent', title: '24/7 Concierge', copy: 'Site managers available around the clock.' },
-          ].map((item) => (
-            <div key={item.title} className="text-center md:text-left">
-              <Icon name={item.icon} className="mb-3 text-[32px] text-on-tertiary-container" />
-              <h3 className="mb-2 font-headline text-lg text-primary">{item.title}</h3>
-              <p className="text-sm text-on-surface-variant">{item.copy}</p>
-            </div>
-          ))}
-        </div>
+      {/* Categories Navigation */}
+      <section className="bg-surface sticky top-20 z-40 border-b border-outline-variant">
+      <div className="max-w-max-width mx-auto px-margin-desktop overflow-x-auto">
+      <div className="flex gap-lg py-md whitespace-nowrap">
+      <button className="font-label-md text-label-md tab-active flex items-center gap-xs pb-md">
+      <span className="material-symbols-outlined">electric_bolt</span> Electrician
+                          </button>
+      <button className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs pb-md">
+      <span className="material-symbols-outlined">plumbing</span> Plumber
+                          </button>
+      <button className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs pb-md">
+      <span className="material-symbols-outlined">foundation</span> Mason
+                          </button>
+      <button className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs pb-md">
+      <span className="material-symbols-outlined">carpenter</span> Carpenter
+                          </button>
+      <button className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs pb-md">
+      <span className="material-symbols-outlined">format_paint</span> Painter
+                          </button>
+      </div>
+      </div>
       </section>
+      {/* Professional Profiles Grid */}
+      <section className="py-xl bg-background">
+      <div className="max-w-max-width mx-auto px-margin-desktop">
+      <div className="flex justify-between items-end mb-lg">
+      <div>
+      <h2 className="font-headline-sm text-headline-sm">Certified Master Electricians</h2>
+      <p className="text-on-surface-variant">Vetted professionals specialized in residential and commercial wiring.</p>
+      </div>
+      <div className="flex items-center gap-sm">
+      <span className="font-label-sm text-label-sm text-on-surface-variant">Sort by:</span>
+      <select className="bg-surface-container-lowest border-outline-variant font-label-md rounded p-xs">
+      <option>Years of Experience</option>
+      <option>Highest Rated</option>
+      <option>Lowest Rate</option>
+      </select>
+      </div>
+      </div>
+      {/* Bento Grid / Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+      {/* Worker Card 1 */}
+      <div className="bg-surface-container-lowest border border-outline-variant p-md flex flex-col transition-all worker-card">
+      <div className="flex gap-md items-start mb-md">
+      <img className="w-24 h-24 object-cover rounded-lg" data-alt="A professional headshot of a mature electrician in a clean navy blue uniform with a tool belt, posing in front of a modern architectural project. High-contrast, sharp lighting emphasizes his experienced and trustworthy expression. The style is professional corporate photography with a soft-focus construction site background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtJm4DRJH3yAs1JyrQcQjFXsBlh-DUrl0EeVVjRar-D7t-lgZ0ZNJwY_pTpwe2Kq4Ye-Y8dXa1e0dplG455vdiWw9Tk8nHkZMZ4ZLF41yAKAABBWa8JFiJY4lVv7McTOnit3ixFkWTm2GtHYArP5_8JKykBH7wK4iagn6UjLUpZIEB_OmAaksDkgc6j12rZK6cARU-U_RfZsHStwRpkNfn_O-b5w37isTk10x2tQOcG48iY1k_P4PouU_JkTRfRKtDtScshu2_MDtO"/>
+      <div className="flex-1">
+      <div className="flex justify-between items-start">
+      <h3 className="font-headline-sm text-headline-sm text-[20px]">Marcus Thorne</h3>
+      <span className="bg-tertiary-fixed text-on-tertiary-fixed px-xs py-[2px] font-label-sm rounded uppercase tracking-wider text-[10px]">Available Now</span>
+      </div>
+      <p className="text-on-surface-variant font-label-md">Master Electrician</p>
+      <div className="flex items-center text-[#EAB308] mt-xs">
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star_half</span>
+      <span className="text-on-surface-variant font-label-sm ml-xs">4.9 (124 reviews)</span>
+      </div>
+      </div>
+      </div>
+      <div className="grid grid-cols-2 gap-sm border-y border-outline-variant py-md mb-md">
+      <div>
+      <p className="font-label-sm text-label-sm text-on-surface-variant uppercase">Experience</p>
+      <p className="font-label-md text-label-md">15 Years</p>
+      </div>
+      <div>
+      <p className="font-label-sm text-label-sm text-on-surface-variant uppercase">Hourly Rate</p>
+      <p className="font-label-md text-label-md font-bold">$85.00</p>
+      </div>
+      </div>
+      <div className="mb-md">
+      <p className="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                                      Specialist in smart home automation and industrial panel upgrades. Certified by the National Board.
+                                  </p>
+      </div>
+      <button className="mt-auto w-full bg-primary text-on-primary py-sm font-label-md rounded hover:bg-on-surface-variant transition-colors flex items-center justify-center gap-xs">
+      <span className="material-symbols-outlined text-[18px]">calendar_today</span> Hire Now
+                              </button>
+      </div>
+      {/* Worker Card 2 */}
+      <div className="bg-surface-container-lowest border border-outline-variant p-md flex flex-col transition-all worker-card">
+      <div className="flex gap-md items-start mb-md">
+      <img className="w-24 h-24 object-cover rounded-lg" data-alt="A professional headshot of a female construction professional wearing a white hard hat and reflective vest, holding a digital tablet. She has a confident, bright smile against a backdrop of a clean, structured industrial interior. The lighting is crisp and modern, reflecting a sense of precision and architectural integrity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPVvrulsgbDPr-IWg0JoKF98R3j9QC-s_RxcEGQMJY2900SYRODC1CPTnELJj2BDrs0bQyoqTcOPOdO3s6p3EzZORwk0x5nYn6QKqH516Ds_fFj9rclvWgZpWGOcczIrYm_McVonFZZ1EqUd1WJQuKli5CoMIZXM8tR5XHRfKMiVicBNtMiuuNRtAmby0LwKRQzi6Gicp8AA3kqMlNf9xo07eF3oJ1cIO8ihI9tJHbH6kN6I0w_ASVYapJt-wfS8q1_2sNA0KlFu8K"/>
+      <div className="flex-1">
+      <div className="flex justify-between items-start">
+      <h3 className="font-headline-sm text-headline-sm text-[20px]">Elena Rodriguez</h3>
+      <span className="bg-surface-container-highest text-on-surface-variant px-xs py-[2px] font-label-sm rounded uppercase tracking-wider text-[10px]">In Project</span>
+      </div>
+      <p className="text-on-surface-variant font-label-md">Senior Electrician</p>
+      <div className="flex items-center text-[#EAB308] mt-xs">
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="text-on-surface-variant font-label-sm ml-xs">5.0 (89 reviews)</span>
+      </div>
+      </div>
+      </div>
+      <div className="grid grid-cols-2 gap-sm border-y border-outline-variant py-md mb-md">
+      <div>
+      <p className="font-label-sm text-label-sm text-on-surface-variant uppercase">Experience</p>
+      <p className="font-label-md text-label-md">12 Years</p>
+      </div>
+      <div>
+      <p className="font-label-sm text-label-sm text-on-surface-variant uppercase">Hourly Rate</p>
+      <p className="font-label-md text-label-md font-bold">$92.00</p>
+      </div>
+      </div>
+      <div className="mb-md">
+      <p className="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                                      Expert in solar integration and energy-efficient retrofitting for sustainable luxury homes.
+                                  </p>
+      </div>
+      <button className="mt-auto w-full border border-primary text-primary py-sm font-label-md rounded hover:bg-surface-container-low transition-colors flex items-center justify-center gap-xs">
+      <span className="material-symbols-outlined text-[18px]">visibility</span> View Schedule
+                              </button>
+      </div>
+      {/* Worker Card 3 */}
+      <div className="bg-surface-container-lowest border border-outline-variant p-md flex flex-col transition-all worker-card">
+      <div className="flex gap-md items-start mb-md">
+      <img className="w-24 h-24 object-cover rounded-lg" data-alt="A focused male electrician working with intricate wiring inside a modern circuit panel. He is wearing safety glasses and professional gear. The lighting is bright and clear, highlighting the technical nature of his work. High-end architectural office background, conveying stability and professional craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2Cucgay85OITk6L_FnaEefUS01dUvyyjvYBtOnmPg40vm-n3NaxAFJgKFlEKa9nrRJKo_oT7g0z-m3J_RjWe8DQPAudAqbo0_wa8xoEWrKqoyNPF8MivrfxenXxYOeB5ptGbGurQtvcl0QXNXvLhOeXdVS3QsfKMaZV8IJj32Xv3E-Uuj4AUSlR5W6ay1dJ4UkllNt8Jn9UEMORrykGy2nAJWDwzT8CCxoz-gQ7FkbYwTmE2BwLLE1LcXx7i6gen3-1_YDbyMUHOG"/>
+      <div className="flex-1">
+      <div className="flex justify-between items-start">
+      <h3 className="font-headline-sm text-headline-sm text-[20px]">David Chen</h3>
+      <span className="bg-tertiary-fixed text-on-tertiary-fixed px-xs py-[2px] font-label-sm rounded uppercase tracking-wider text-[10px]">Available Now</span>
+      </div>
+      <p className="text-on-surface-variant font-label-md">Journeyman Electrician</p>
+      <div className="flex items-center text-[#EAB308] mt-xs">
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
+      <span className="material-symbols-outlined text-[18px]">star</span>
+      <span className="text-on-surface-variant font-label-sm ml-xs">4.2 (45 reviews)</span>
+      </div>
+      </div>
+      </div>
+      <div className="grid grid-cols-2 gap-sm border-y border-outline-variant py-md mb-md">
+      <div>
+      <p className="font-label-sm text-label-sm text-on-surface-variant uppercase">Experience</p>
+      <p className="font-label-md text-label-md">8 Years</p>
+      </div>
+      <div>
+      <p className="font-label-sm text-label-sm text-on-surface-variant uppercase">Hourly Rate</p>
+      <p className="font-label-md text-label-md font-bold">$65.00</p>
+      </div>
+      </div>
+      <div className="mb-md">
+      <p className="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                                      Reliable specialist in lighting design and commercial circuit maintenance.
+                                  </p>
+      </div>
+      <button className="mt-auto w-full bg-primary text-on-primary py-sm font-label-md rounded hover:bg-on-surface-variant transition-colors flex items-center justify-center gap-xs">
+      <span className="material-symbols-outlined text-[18px]">calendar_today</span> Hire Now
+                              </button>
+      </div>
+      </div>
+      </div>
+      </section>
+      {/* Service Benefits / Trust Block */}
+      <section className="py-xl border-t border-outline-variant">
+      <div className="max-w-max-width mx-auto px-margin-desktop">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-lg">
+      <div className="flex flex-col gap-xs">
+      <span className="material-symbols-outlined text-primary text-display-lg" style={{ fontSize: '40px' }}>verified</span>
+      <h4 className="font-label-md text-label-md uppercase">Vetted Expertise</h4>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">Every professional passes rigorous background checks and skill assessments.</p>
+      </div>
+      <div className="flex flex-col gap-xs">
+      <span className="material-symbols-outlined text-primary text-display-lg" style={{ fontSize: '40px' }}>security</span>
+      <h4 className="font-label-md text-label-md uppercase">Project Insurance</h4>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">All work booked through Structura is covered by our comprehensive liability bond.</p>
+      </div>
+      <div className="flex flex-col gap-xs">
+      <span className="material-symbols-outlined text-primary text-display-lg" style={{ fontSize: '40px' }}>payments</span>
+      <h4 className="font-label-md text-label-md uppercase">Escrow Protection</h4>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">Funds are released only when you sign off on milestone completion.</p>
+      </div>
+      <div className="flex flex-col gap-xs">
+      <span className="material-symbols-outlined text-primary text-display-lg" style={{ fontSize: '40px' }}>support_agent</span>
+      <h4 className="font-label-md text-label-md uppercase">24/7 Concierge</h4>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">Our site managers are available around the clock for project coordination.</p>
+      </div>
+      </div>
+      </div>
+      </section>
+      </main>
+      {/* Footer */}
+      <footer className="w-full mt-auto bg-surface-container-highest border-t border-outline-variant">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-max-width mx-auto px-margin-desktop py-xl">
+      <div className="flex flex-col gap-md">
+      <div className="font-headline-sm text-headline-sm font-bold text-primary">Structura</div>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">Defining architectural excellence through skilled labor and precise management. Your foundation for premium building services.</p>
+      </div>
+      <div className="flex flex-col gap-sm">
+      <h5 className="font-label-md text-label-md text-on-surface">Company</h5>
+      <nav className="flex flex-col gap-xs">
+      <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Careers</a>
+      <Link className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary hover:underline transition-all" to="/about">About Us</Link>
+      <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Sustainability</a>
+      </nav>
+      </div>
+      <div className="flex flex-col gap-sm">
+      <h5 className="font-label-md text-label-md text-on-surface">Legal</h5>
+      <nav className="flex flex-col gap-xs">
+      <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Privacy Policy</a>
+      <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Terms of Service</a>
+      <a className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary hover:underline transition-all" href="#">Licensing</a>
+      </nav>
+      </div>
+      <div className="flex flex-col gap-sm">
+      <h5 className="font-label-md text-label-md text-on-surface">Contact</h5>
+      <div className="font-body-sm text-body-sm text-on-surface-variant">
+      <p>1280 Architectural Plaza</p>
+      <p>New York, NY 10001</p>
+      <p className="mt-sm">contact@structura.arch</p>
+      </div>
+      </div>
+      </div>
+      <div className="max-w-max-width mx-auto px-margin-desktop py-md border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-md">
+      <p className="font-label-sm text-label-sm text-on-surface-variant">© 2024 Structura Architectural Excellence. All rights reserved.</p>
+      <div className="flex gap-md">
+      <span className="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">public</span>
+      <span className="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">share</span>
+      </div>
+      </div>
+      </footer>
     </>
   )
 }

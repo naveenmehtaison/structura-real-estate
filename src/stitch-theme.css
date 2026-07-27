@@ -1,0 +1,217 @@
+/* Exact tokens from Stitch Foundational Trust HTML (home_structura_interactive_experience) */
+
+@theme {
+  --color-surface: #f7f9fb;
+  --color-on-tertiary-fixed: #00210b;
+  --color-inverse-surface: #2d3133;
+  --color-on-surface-variant: #45464d;
+  --color-primary-container: #131b2e;
+  --color-error: #ba1a1a;
+  --color-on-tertiary-fixed-variant: #005226;
+  --color-on-error-container: #93000a;
+  --color-tertiary-fixed-dim: #8bd79b;
+  --color-secondary-container: #d5e3fd;
+  --color-inverse-on-surface: #eff1f3;
+  --color-primary-fixed: #dae2fd;
+  --color-on-tertiary: #ffffff;
+  --color-background: #f7f9fb;
+  --color-outline: #76777d;
+  --color-outline-variant: #c6c6cd;
+  --color-on-primary-container: #7c839b;
+  --color-surface-container: #eceef0;
+  --color-surface-container-highest: #e0e3e5;
+  --color-on-primary-fixed: #131b2e;
+  --color-secondary-fixed: #d5e3fd;
+  --color-on-secondary-fixed-variant: #3a485c;
+  --color-on-secondary: #ffffff;
+  --color-primary: #000000;
+  --color-on-tertiary-container: #49935c;
+  --color-on-error: #ffffff;
+  --color-inverse-primary: #bec6e0;
+  --color-on-surface: #191c1e;
+  --color-surface-container-high: #e6e8ea;
+  --color-surface-container-lowest: #ffffff;
+  --color-tertiary-fixed: #a6f4b5;
+  --color-on-secondary-container: #57657b;
+  --color-surface-tint: #565e74;
+  --color-tertiary-container: #00210b;
+  --color-tertiary: #000000;
+  --color-on-primary: #ffffff;
+  --color-surface-dim: #d8dadc;
+  --color-on-background: #191c1e;
+  --color-on-primary-fixed-variant: #3f465c;
+  --color-surface-container-low: #f2f4f6;
+  --color-secondary-fixed-dim: #b9c7e0;
+  --color-on-secondary-fixed: #0d1c2f;
+  --color-surface-bright: #f7f9fb;
+  --color-surface-variant: #e0e3e5;
+  --color-secondary: #515f74;
+  --color-error-container: #ffdad6;
+  --color-primary-fixed-dim: #bec6e0;
+  --color-emerald: #059669;
+  --color-azure: #0284c7;
+  --color-ochre: #d97706;
+  --color-whatsapp: #25d366;
+
+  --radius-DEFAULT: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+
+  /* Custom spacing names from HTML — keep default sm/md/lg scale via max-width below */
+  --spacing-margin-mobile: 16px;
+  --spacing-gutter: 24px;
+  --spacing-md: 24px;
+  --spacing-lg: 40px;
+  --spacing-xs: 8px;
+  --spacing-xl: 64px;
+  --spacing-max-width: 1280px;
+  --spacing-base: 4px;
+  --spacing-margin-desktop: 48px;
+  --spacing-sm: 16px;
+
+  --font-headline-md: "Manrope", sans-serif;
+  --font-display-lg: "Manrope", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-display-lg-mobile: "Manrope", sans-serif;
+  --font-headline-sm: "Manrope", sans-serif;
+  --font-label-md: "Inter", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --font-label-sm: "Inter", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-sans: "Inter", sans-serif;
+
+  --text-headline-md: 30px;
+  --text-headline-md--line-height: 38px;
+  --text-headline-md--letter-spacing: -0.01em;
+  --text-headline-md--font-weight: 600;
+
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 56px;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 700;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--font-weight: 400;
+
+  --text-display-lg-mobile: 36px;
+  --text-display-lg-mobile--line-height: 44px;
+  --text-display-lg-mobile--letter-spacing: -0.02em;
+  --text-display-lg-mobile--font-weight: 700;
+
+  --text-headline-sm: 24px;
+  --text-headline-sm--line-height: 32px;
+  --text-headline-sm--font-weight: 600;
+
+  --text-label-md: 14px;
+  --text-label-md--line-height: 16px;
+  --text-label-md--letter-spacing: 0.05em;
+  --text-label-md--font-weight: 600;
+
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 20px;
+  --text-body-sm--font-weight: 400;
+
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 16px;
+  --text-label-sm--font-weight: 500;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+
+  /* Preserve Tailwind max-width scale despite custom spacing */
+  --max-width-sm: 24rem;
+  --max-width-md: 28rem;
+  --max-width-lg: 32rem;
+  --max-width-xl: 36rem;
+  --max-width-2xl: 42rem;
+  --max-width-3xl: 48rem;
+  --max-width-4xl: 56rem;
+  --max-width-5xl: 64rem;
+  --max-width-6xl: 72rem;
+  --max-width-7xl: 80rem;
+  --max-width-max-width: 1280px;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@layer base {
+  body {
+    background-color: #f7f9fb;
+    color: #191c1e;
+    font-family: "Inter", sans-serif;
+    margin: 0;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    vertical-align: middle;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-reveal {
+    animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-shimmer {
+    animation: shimmer 3s infinite linear;
+  }
+  .glass-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+  }
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

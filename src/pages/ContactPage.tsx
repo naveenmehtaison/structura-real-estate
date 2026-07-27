@@ -1,161 +1,182 @@
-import { useState } from 'react'
-import { Icon } from '../components/Icon'
-import { images } from '../data/content'
+import { Link } from 'react-router-dom'
 
 export function ContactPage() {
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
-
   return (
     <>
-      <section className="container-site py-12">
-        <h1 className="text-display mb-4 text-primary">Connect with Structura</h1>
-        <p className="mb-10 max-w-2xl text-body-lg text-on-surface-variant">
-          Building excellence requires precision and open dialogue. We look forward to discussing
-          your next architectural landmark.
-        </p>
-
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-          <div className="rounded border border-outline-variant bg-surface-container-lowest p-6 lg:col-span-7 lg:p-8">
-            <h2 className="mb-6 font-headline text-2xl text-primary">Get in Touch</h2>
-            {status === 'sent' ? (
-              <div className="rounded bg-secondary-container p-6 text-on-secondary-container">
-                <p className="font-headline text-lg">Inquiry received</p>
-                <p className="mt-2 text-sm">
-                  Thank you for contacting Structura. A specialist will respond within one business
-                  day.
-                </p>
-              </div>
-            ) : (
-              <form
-                className="space-y-4"
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  setStatus('sending')
-                  window.setTimeout(() => setStatus('sent'), 900)
-                }}
-              >
-                <label className="block">
-                  <span className="mb-1 block text-sm text-on-surface-variant">Full Name</span>
-                  <input
-                    required
-                    className="w-full rounded border border-outline-variant px-3 py-2.5 text-sm outline-none focus:ring-1 focus:ring-secondary"
-                  />
-                </label>
-                <label className="block">
-                  <span className="mb-1 block text-sm text-on-surface-variant">Email Address</span>
-                  <input
-                    type="email"
-                    required
-                    className="w-full rounded border border-outline-variant px-3 py-2.5 text-sm outline-none focus:ring-1 focus:ring-secondary"
-                  />
-                </label>
-                <label className="block">
-                  <span className="mb-1 block text-sm text-on-surface-variant">Subject</span>
-                  <select
-                    required
-                    className="w-full rounded border border-outline-variant px-3 py-2.5 text-sm outline-none focus:ring-1 focus:ring-secondary"
-                    defaultValue=""
-                  >
-                    <option value="" disabled>
-                      Select a subject
-                    </option>
-                    <option>Residential Inquiry</option>
-                    <option>Commercial Development</option>
-                    <option>Design Consultation</option>
-                    <option>Careers & Partnerships</option>
-                  </select>
-                </label>
-                <label className="block">
-                  <span className="mb-1 block text-sm text-on-surface-variant">Message</span>
-                  <textarea
-                    required
-                    rows={5}
-                    className="w-full rounded border border-outline-variant px-3 py-2.5 text-sm outline-none focus:ring-1 focus:ring-secondary"
-                  />
-                </label>
-                <button
-                  type="submit"
-                  disabled={status === 'sending'}
-                  className="rounded bg-primary-container px-8 py-3 text-label text-on-primary transition hover:opacity-90 disabled:opacity-70"
-                >
-                  {status === 'sending' ? 'Transmitting…' : 'Submit Inquiry'}
-                </button>
-              </form>
-            )}
-          </div>
-
-          <aside className="space-y-6 lg:col-span-5">
-            <div className="overflow-hidden rounded border border-outline-variant">
-              <img
-                src={images.contactOffice}
-                alt="Structura headquarters"
-                className="h-48 w-full object-cover"
-              />
-            </div>
-            <div className="rounded border border-outline-variant bg-surface-container-lowest p-6">
-              <h3 className="mb-4 font-headline text-xl text-primary">Office Information</h3>
-              <ul className="space-y-4 text-sm text-on-surface-variant">
-                <li className="flex gap-3">
-                  <Icon name="location_on" className="text-secondary" />
-                  <span>482 Architectural Way, Suite 100, Design District, London, SW1A 1AA</span>
-                </li>
-                <li className="flex gap-3">
-                  <Icon name="call" className="text-secondary" />
-                  <a href="tel:+442079460123" className="hover:text-primary">
-                    +44 (0) 20 7946 0123
-                  </a>
-                </li>
-                <li className="flex gap-3">
-                  <Icon name="mail" className="text-secondary" />
-                  <a href="mailto:office@structura-arch.com" className="hover:text-primary">
-                    office@structura-arch.com
-                  </a>
-                </li>
-                <li className="flex gap-3">
-                  <Icon name="schedule" className="text-secondary" />
-                  <span>Mon–Fri 08:00–18:00 · Sat–Sun by appointment</span>
-                </li>
-              </ul>
-            </div>
-            <a
-              href="https://wa.me/1234567890"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-3 rounded bg-[#49935c] p-5 text-white transition hover:opacity-90"
-            >
-              <Icon name="chat" className="text-[28px]" />
-              <div>
-                <p className="text-label">Direct Consultation</p>
-                <p className="text-sm opacity-90">Message us on WhatsApp</p>
-              </div>
-            </a>
-          </aside>
-        </div>
+      {/* TopNavBar */}
+      <header className="w-full top-0 sticky z-50 bg-surface-container-lowest border-b border-outline-variant">
+      <nav className="flex justify-between items-center max-w-max-width mx-auto px-margin-desktop h-20">
+      <div className="font-headline-md text-headline-md font-bold text-primary tracking-tighter">
+                      Strucura
+                  </div>
+      <div className="hidden md:flex items-center gap-gutter">
+      <Link className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" to="/">Home</Link>
+      <Link className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" to="/properties">Properties</Link>
+      <Link className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" to="/construction">Construction</Link>
+      <Link className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" to="/about">About</Link>
+      <Link className="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" to="/contact">Contact</Link>
+      </div>
+      <div className="flex items-center gap-sm">
+      <button className="material-symbols-outlined p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all" data-icon="search">search</button>
+      <button className="bg-primary text-on-primary px-lg py-xs font-label-md text-label-md rounded-lg hover:opacity-80 transition-standard">
+                          Inquire
+                      </button>
+      </div>
+      </nav>
+      </header>
+      <main className="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+      {/* Hero Section Title */}
+      <div className="mb-xl text-center md:text-left">
+      <h1 className="font-display-lg text-display-lg mb-base">Connect with Structura</h1>
+      <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Building excellence requires precision and open dialogue. We look forward to discussing your next architectural landmark.</p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
+      {/* Left: Contact Form */}
+      <section className="md:col-span-7 bg-surface-container-lowest border border-outline-variant p-lg md:p-xl rounded shadow-sm">
+      <h2 className="font-headline-sm text-headline-sm mb-lg">Get in Touch</h2>
+      <form className="space-y-md" id="contactForm">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-md">
+      <div className="space-y-xs">
+      <label className="font-label-md text-label-md block text-on-surface-variant" htmlFor="name">Full Name</label>
+      <input className="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md form-input-focus transition-standard" id="name" name="name" placeholder="John Doe" required={true} type="text"/>
+      </div>
+      <div className="space-y-xs">
+      <label className="font-label-md text-label-md block text-on-surface-variant" htmlFor="email">Email Address</label>
+      <input className="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md form-input-focus transition-standard" id="email" name="email" placeholder="john@example.com" required={true} type="email"/>
+      </div>
+      </div>
+      <div className="space-y-xs">
+      <label className="font-label-md text-label-md block text-on-surface-variant" htmlFor="subject">Subject</label>
+      <select className="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md form-input-focus transition-standard" id="subject" name="subject" required={true}>
+      <option value="">Select a topic</option>
+      <option value="residential">Residential Inquiry</option>
+      <option value="commercial">Commercial Development</option>
+      <option value="consultation">Design Consultation</option>
+      <option value="careers">Careers &amp; Partnerships</option>
+      </select>
+      </div>
+      <div className="space-y-xs">
+      <label className="font-label-md text-label-md block text-on-surface-variant" htmlFor="message">Message</label>
+      <textarea className="w-full bg-white border border-outline-variant rounded-lg p-md font-body-md text-body-md form-input-focus transition-standard" id="message" name="message" placeholder="Describe your project goals..." required={true} rows={5}></textarea>
+      </div>
+      <button className="w-full bg-primary-container text-on-primary py-md px-lg rounded-lg font-label-md text-label-md hover:opacity-90 transition-standard uppercase tracking-widest" type="submit">
+                              Submit Inquiry
+                          </button>
+      </form>
       </section>
-
-      <section className="relative mt-4 h-[450px] w-full overflow-hidden border-t border-outline-variant bg-surface-container">
-        <iframe
-          title="Structura headquarters map"
-          className="h-full w-full border-0 grayscale"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-0.145%2C51.500%2C-0.120%2C51.510&layer=mapnik&marker=51.505%2C-0.132"
-        />
-        <div className="absolute bottom-6 left-6 max-w-sm rounded border border-outline-variant bg-surface-container-lowest p-5 shadow-sm">
-          <p className="font-headline text-lg text-primary">Structura Main Office</p>
-          <p className="mt-1 text-sm text-on-surface-variant">
-            Access via North Gate. Visitor parking available in Basement B2.
-          </p>
-          <a
-            href="https://www.openstreetmap.org/?mlat=51.505&mlon=-0.132#map=16/51.505/-0.132"
-            target="_blank"
-            rel="noreferrer"
-            className="mt-3 inline-flex items-center gap-1 text-label text-secondary hover:underline"
-          >
-            Get Directions <Icon name="arrow_outward" className="text-[16px]" />
-          </a>
-        </div>
+      {/* Right: Contact Info */}
+      <aside className="md:col-span-5 space-y-md">
+      <div className="bg-white border border-outline-variant p-lg rounded">
+      <h3 className="font-headline-sm text-headline-sm mb-lg">Office Information</h3>
+      <div className="space-y-lg">
+      <div className="flex gap-md">
+      <span className="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+      <div>
+      <p className="font-label-md text-label-md text-on-surface mb-base">Global Headquarters</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">482 Architectural Way, Suite 100<br/>Design District, London, SW1A 1AA</p>
+      </div>
+      </div>
+      <div className="flex gap-md">
+      <span className="material-symbols-outlined text-primary" data-icon="call">call</span>
+      <div>
+      <p className="font-label-md text-label-md text-on-surface mb-base">Phone &amp; Support</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">+44 (0) 20 7946 0123</p>
+      </div>
+      </div>
+      <div className="flex gap-md">
+      <span className="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+      <div>
+      <p className="font-label-md text-label-md text-on-surface mb-base">Email Inquiries</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">office@structura-arch.com</p>
+      </div>
+      </div>
+      <div className="flex gap-md">
+      <span className="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+      <div>
+      <p className="font-label-md text-label-md text-on-surface mb-base">Business Hours</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">Mon – Fri: 08:00 – 18:00<br/>Sat – Sun: By appointment only</p>
+      </div>
+      </div>
+      </div>
+      </div>
+      {/* WhatsApp CTA */}
+      <a className="block bg-on-tertiary-container text-white p-lg rounded-lg hover:opacity-90 transition-standard group" href="https://wa.me/1234567890" target="_blank">
+      <div className="flex items-center justify-between">
+      <div className="flex items-center gap-md">
+      <div className="bg-white/20 p-2 rounded-full">
+      <span className="material-symbols-outlined" data-icon="chat">chat</span>
+      </div>
+      <div>
+      <p className="font-label-md text-label-md">Direct Consultation</p>
+      <p className="font-body-sm text-body-sm opacity-90">Message us on WhatsApp</p>
+      </div>
+      </div>
+      <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+      </div>
+      </a>
+      {/* Visual Asset / Texture */}
+      <div className="relative h-48 rounded overflow-hidden border border-outline-variant bg-surface-container-highest">
+      <img className="w-full h-full object-cover opacity-80" data-alt="A professional, high-end architectural office environment with large glass windows, minimalist drafting tables, and structural blueprints laid out. The lighting is bright and natural, suggesting a creative and professional workspace. The aesthetic is clean and modern, mirroring the Structura brand identity with a neutral color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW9ajsbV4DkWbdGt8JAzjUpa72XJ-x2Oy511_7k_rdaujgCny1lzVkI_KMZPEEP_DFGiHvAUok2TRxGSOb3fBFOQw88ebzCux6ps2w_uslVxyFXxort4pPwXHW_jC5m1_7fwH4hF8kn47UQYj8B6Jch_FZUCtDfkS8Yx6JQVxxxe_A9IYOl49QeEW9H9QD6-8BV61jP_4i2xGzf3fd57DTucg9-WsumlvRUhz2Q3464bQyhzx2RREcuPqXr4HnpFjZKKdrgYOJm7Ns"/>
+      <div className="absolute inset-0 bg-primary-container/10"></div>
+      </div>
+      </aside>
+      </div>
+      </main>
+      {/* Bottom: Google Maps Section */}
+      <section className="w-full border-t border-outline-variant mt-xl">
+      <div className="relative h-[450px] w-full bg-surface-container-high group">
+      <div className="w-full h-full grayscale hover:grayscale-0 transition-standard duration-700" data-location="London" style={{  }}>
+      {/* Map integration placeholder */}
+      <div className="w-full h-full flex flex-col items-center justify-center space-y-md">
+      <span className="material-symbols-outlined text-6xl text-primary animate-bounce" data-icon="distance">distance</span>
+      <p className="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">Interactive Site Map</p>
+      <div className="px-lg py-xs border border-primary rounded-full font-label-sm text-label-sm text-primary group-hover:bg-primary group-hover:text-on-primary transition-standard">
+                              Click to expand location
+                          </div>
+      </div>
+      </div>
+      {/* Map Overlay UI */}
+      <div className="absolute bottom-lg left-margin-desktop bg-white p-md rounded shadow-lg border border-outline-variant max-w-xs hidden md:block">
+      <p className="font-label-md text-label-md text-primary mb-base">Structura Main Office</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">Access via North Gate. Visitor parking available in Basement B2.</p>
+      <button className="mt-md text-primary font-label-sm text-label-sm underline hover:no-underline">Get Directions</button>
+      </div>
+      </div>
       </section>
+      {/* Footer */}
+      <footer className="w-full bg-surface-container-highest border-t border-outline-variant mt-auto">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-max-width mx-auto px-margin-desktop py-xl">
+      <div className="space-y-md">
+      <div className="font-headline-sm text-headline-sm font-bold text-primary">Structura</div>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">Defining the skyline with architectural integrity and structural excellence since 1998.</p>
+      </div>
+      <div className="flex flex-col gap-sm">
+      <h4 className="font-label-md text-label-md text-on-surface">Quick Links</h4>
+      <a className="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Careers</a>
+      <a className="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Licensing</a>
+      <Link className="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" to="/portfolio">Project Portfolio</Link>
+      </div>
+      <div className="flex flex-col gap-sm">
+      <h4 className="font-label-md text-label-md text-on-surface">Legal</h4>
+      <a className="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Privacy Policy</a>
+      <a className="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Terms of Service</a>
+      <a className="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Cookie Policy</a>
+      </div>
+      <div className="flex flex-col gap-sm">
+      <h4 className="font-label-md text-label-md text-on-surface">Stay Updated</h4>
+      <p className="font-body-sm text-body-sm text-on-surface-variant mb-xs">Join our quarterly newsletter for architectural insights.</p>
+      <div className="flex">
+      <input className="bg-white border border-outline-variant p-2 text-sm w-full rounded-l-lg focus:outline-none" placeholder="Email address" type="email"/>
+      <button className="bg-primary text-white px-md py-2 rounded-r-lg hover:opacity-90 transition-all">
+      <span className="material-symbols-outlined text-sm" data-icon="send">send</span>
+      </button>
+      </div>
+      </div>
+      </div>
+      <div className="max-w-max-width mx-auto px-margin-desktop py-md border-t border-outline-variant/30 text-center md:text-left">
+      <p className="font-label-sm text-label-sm text-on-surface-variant">© 2024 Structura Architectural Excellence. All rights reserved.</p>
+      </div>
+      </footer>
     </>
   )
 }
