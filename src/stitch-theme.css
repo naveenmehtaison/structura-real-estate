@@ -70,16 +70,16 @@
   --spacing-margin-desktop: 48px;
   --spacing-sm: 16px;
 
-  --font-headline-md: "Manrope", sans-serif;
-  --font-display-lg: "Manrope", sans-serif;
-  --font-body-lg: "Inter", sans-serif;
-  --font-display-lg-mobile: "Manrope", sans-serif;
-  --font-headline-sm: "Manrope", sans-serif;
-  --font-label-md: "Inter", sans-serif;
-  --font-body-sm: "Inter", sans-serif;
-  --font-label-sm: "Inter", sans-serif;
-  --font-body-md: "Inter", sans-serif;
-  --font-sans: "Inter", sans-serif;
+  --font-headline-md: "Noto Sans Devanagari", "Manrope", sans-serif;
+  --font-display-lg: "Noto Sans Devanagari", "Manrope", sans-serif;
+  --font-body-lg: "Noto Sans Devanagari", "Inter", sans-serif;
+  --font-display-lg-mobile: "Noto Sans Devanagari", "Manrope", sans-serif;
+  --font-headline-sm: "Noto Sans Devanagari", "Manrope", sans-serif;
+  --font-label-md: "Noto Sans Devanagari", "Inter", sans-serif;
+  --font-body-sm: "Noto Sans Devanagari", "Inter", sans-serif;
+  --font-label-sm: "Noto Sans Devanagari", "Inter", sans-serif;
+  --font-body-md: "Noto Sans Devanagari", "Inter", sans-serif;
+  --font-sans: "Noto Sans Devanagari", "Inter", sans-serif;
 
   --text-headline-md: 30px;
   --text-headline-md--line-height: 38px;
@@ -169,7 +169,7 @@
   body {
     background-color: #f7f9fb;
     color: #191c1e;
-    font-family: "Inter", sans-serif;
+    font-family: "Noto Sans Devanagari", "Inter", sans-serif;
     margin: 0;
   }
 
@@ -213,5 +213,27 @@
   .reveal-on-scroll.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .field-input {
+    border: 1px solid var(--color-outline-variant);
+    background-color: #fff;
+    color: var(--color-on-surface);
+  }
+
+  .field-input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 1px var(--color-primary);
+  }
+
+  .form-input-focus:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 1px var(--color-primary);
+  }
+
+  .transition-standard {
+    transition: all 0.2s ease;
   }
 }
