@@ -90,6 +90,12 @@ export function SoldPage() {
                       <p className="font-body-md text-body-md text-primary">{project.dateSold ?? 'जल्द'}</p>
                     </div>
                   </div>
+                  <Link
+                    to={`/properties/${project.id}`}
+                    className="mt-md flex w-full items-center justify-center rounded border border-primary py-3 font-label-md text-label-md text-primary transition-all hover:bg-primary hover:text-on-primary"
+                  >
+                    विवरण देखें
+                  </Link>
                 </div>
               </div>
             )

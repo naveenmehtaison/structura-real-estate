@@ -1,5 +1,33 @@
-import { Link } from 'react-router-dom'
-import { availableProjects, projectCover, type ProjectMeta } from '../data/projects'
+import { useEffect, useMemo, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
+import {
+  availableProjects,
+  formatPriceLabel,
+  projectCover,
+  type ListingType,
+  type ProjectMeta,
+  type PropertyTypeFilter,
+} from '../data/projects'
+
+const PROPERTY_TYPE_OPTIONS: { value: '' | PropertyTypeFilter; label: string }[] = [
+  { value: '', label: 'सभी प्रकार' },
+  { value: 'villa', label: 'आधुनिक विला' },
+  { value: 'penthouse', label: 'पेंटहाउस' },
+  { value: 'commercial', label: 'व्यावसायिक प्लाज़ा' },
+  { value: 'apartment', label: 'लग्ज़री अपार्टमेंट' },
+]
+
+const STATUS_OPTIONS = ['तुरंत रहने योग्य', 'निर्माणाधीन', 'ऑफ-प्लान', 'पूर्ण'] as const
+
+const PRICE_MIN = 500_000
+const PRICE_MAX = 10_000_000
+
+type SortOption = 'newest' | 'price-asc' | 'price-desc' | 'area'
+
+function parseAreaValue(area: string): number {
+  const match = area.replace(/,/g, '').match(/(\d+)/)
+  return match ? Number(match[1]) : 0
+}
 
 function PropertyCard({ project }: { project: ProjectMeta }) {
   const cover = projectCover(project)
@@ -79,6 +107,83 @@ function PropertyCard({ project }: { project: ProjectMeta }) {
 }
 
 export function PropertiesPage() {
+  const [searchParams] = useSearchParams()
+  const urlQuery = searchParams.get('q') ?? ''
+
+  const [listingType, setListingType] = useState<ListingType>('sale')
+  const [locationQuery, setLocationQuery] = useState(urlQuery)
+  const [propertyType, setPropertyType] = useState<'' | PropertyTypeFilter>('')
+  const [maxPrice, setMaxPrice] = useState(PRICE_MAX)
+  const [minBeds, setMinBeds] = useState<number | null>(null)
+  const [statuses, setStatuses] = useState<string[]>([...STATUS_OPTIONS])
+  const [sortBy, setSortBy] = useState<SortOption>('newest')
+  const [appliedTick, setAppliedTick] = useState(0)
+
+  useEffect(() => {
+    setLocationQuery(urlQuery)
+  }, [urlQuery])
+
+  const filtered = useMemo(() => {
+    void appliedTick
+    let list = availableProjects.filter((p) => p.listingType === listingType)
+
+    const q = locationQuery.trim().toLowerCase()
+    if (q) {
+      list = list.filter(
+        (p) =>
+          p.location.toLowerCase().includes(q) ||
+          p.name.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q),
+      )
+    }
+
+    if (propertyType) {
+      list = list.filter((p) => p.propertyType === propertyType)
+    }
+
+    list = list.filter((p) => {
+      if (listingType === 'rent') return p.priceValue <= maxPrice
+      return p.priceValue <= maxPrice
+    })
+
+    if (minBeds != null) {
+      list = list.filter((p) => (p.beds ?? 0) >= minBeds)
+    }
+
+    if (statuses.length === 0) {
+      list = []
+    } else if (statuses.length < STATUS_OPTIONS.length) {
+      list = list.filter((p) => statuses.includes(p.status))
+    }
+
+    const sorted = [...list]
+    switch (sortBy) {
+      case 'price-asc':
+        sorted.sort((a, b) => a.priceValue - b.priceValue)
+        break
+      case 'price-desc':
+        sorted.sort((a, b) => b.priceValue - a.priceValue)
+        break
+      case 'area':
+        sorted.sort((a, b) => parseAreaValue(b.area) - parseAreaValue(a.area))
+        break
+      default:
+        break
+    }
+    return sorted
+  }, [listingType, locationQuery, propertyType, maxPrice, minBeds, statuses, sortBy, appliedTick])
+
+  function toggleStatus(status: string) {
+    setStatuses((prev) =>
+      prev.includes(status) ? prev.filter((s) => s !== status) : [...prev, status],
+    )
+  }
+
+  const priceLabel =
+    listingType === 'rent'
+      ? `₹5k – ${formatPriceLabel(maxPrice, 'rent')}`
+      : `₹5 लाख – ${formatPriceLabel(maxPrice, 'sale')}`
+
   return (
     <>
       <main className="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop py-lg grid grid-cols-12 gap-gutter">
@@ -86,10 +191,26 @@ export function PropertiesPage() {
           <div className="bg-surface-container-lowest border border-outline-variant p-md rounded-lg">
             <h2 className="font-headline-sm text-headline-sm mb-md">फ़िल्टर</h2>
             <div className="flex p-1 bg-surface-container-low rounded-lg mb-md">
-              <button className="flex-1 py-2 font-label-md text-label-md rounded bg-white shadow-sm border border-outline-variant">
+              <button
+                type="button"
+                onClick={() => setListingType('sale')}
+                className={`flex-1 py-2 font-label-md text-label-md rounded transition-colors ${
+                  listingType === 'sale'
+                    ? 'bg-white shadow-sm border border-outline-variant'
+                    : 'text-on-surface-variant hover:text-primary'
+                }`}
+              >
                 खरीदें
               </button>
-              <button className="flex-1 py-2 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">
+              <button
+                type="button"
+                onClick={() => setListingType('rent')}
+                className={`flex-1 py-2 font-label-md text-label-md rounded transition-colors ${
+                  listingType === 'rent'
+                    ? 'bg-white shadow-sm border border-outline-variant'
+                    : 'text-on-surface-variant hover:text-primary'
+                }`}
+              >
                 किराया
               </button>
             </div>
@@ -103,39 +224,68 @@ export function PropertiesPage() {
                   className="field-input w-full rounded py-2 pl-10 pr-4 font-body-sm text-body-sm"
                   placeholder="शहर, इलाका या पिन"
                   type="text"
+                  value={locationQuery}
+                  onChange={(e) => setLocationQuery(e.target.value)}
                 />
               </div>
             </div>
             <div className="mb-md space-y-xs">
               <label className="block font-label-md text-label-md text-on-surface-variant">प्रॉपर्टी प्रकार</label>
-              <select className="field-input w-full cursor-pointer appearance-none rounded px-4 py-2 font-body-sm text-body-sm">
-                <option>सभी प्रकार</option>
-                <option>आधुनिक विला</option>
-                <option>पेंटहाउस</option>
-                <option>व्यावसायिक प्लाज़ा</option>
-                <option>लग्ज़री अपार्टमेंट</option>
+              <select
+                className="field-input w-full cursor-pointer appearance-none rounded px-4 py-2 font-body-sm text-body-sm"
+                value={propertyType}
+                onChange={(e) => setPropertyType(e.target.value as '' | PropertyTypeFilter)}
+              >
+                {PROPERTY_TYPE_OPTIONS.map((opt) => (
+                  <option key={opt.label} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="space-y-xs mb-md">
               <div className="flex justify-between items-center">
                 <label className="font-label-md text-label-md text-on-surface-variant">कीमत सीमा</label>
-                <span className="font-label-sm text-label-sm font-bold text-primary">$500k - $5M+</span>
+                <span className="font-label-sm text-label-sm font-bold text-primary">{priceLabel}</span>
               </div>
-              <input className="w-full accent-primary" max={10000000} min={500000} step={100000} type="range" />
+              <input
+                className="w-full accent-primary"
+                max={PRICE_MAX}
+                min={listingType === 'rent' ? 10_000 : PRICE_MIN}
+                step={listingType === 'rent' ? 5_000 : 100_000}
+                type="range"
+                value={Math.min(maxPrice, PRICE_MAX)}
+                onChange={(e) => setMaxPrice(Number(e.target.value))}
+              />
             </div>
             <div className="space-y-xs mb-md">
               <label className="font-label-md text-label-md text-on-surface-variant block">बेडरूम</label>
               <div className="flex gap-2">
-                <button className="w-10 h-10 border border-outline-variant rounded flex items-center justify-center font-label-md text-label-md hover:bg-surface-container-low">
-                  1+
-                </button>
-                <button className="w-10 h-10 border border-outline-variant rounded flex items-center justify-center font-label-md text-label-md bg-primary text-white">
-                  3+
-                </button>
-                <button className="w-10 h-10 border border-outline-variant rounded flex items-center justify-center font-label-md text-label-md hover:bg-surface-container-low">
-                  5+
-                </button>
-                <button className="flex-1 border border-outline-variant rounded flex items-center justify-center font-label-md text-label-md hover:bg-surface-container-low">
+                {[
+                  { label: '1+', value: 1 },
+                  { label: '3+', value: 3 },
+                  { label: '5+', value: 5 },
+                ].map((opt) => (
+                  <button
+                    key={opt.label}
+                    type="button"
+                    onClick={() => setMinBeds(opt.value)}
+                    className={`w-10 h-10 border border-outline-variant rounded flex items-center justify-center font-label-md text-label-md transition-colors ${
+                      minBeds === opt.value
+                        ? 'bg-primary text-white'
+                        : 'hover:bg-surface-container-low'
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => setMinBeds(null)}
+                  className={`flex-1 border border-outline-variant rounded flex items-center justify-center font-label-md text-label-md transition-colors ${
+                    minBeds == null ? 'bg-primary text-white' : 'hover:bg-surface-container-low'
+                  }`}
+                >
                   कोई भी
                 </button>
               </div>
@@ -143,25 +293,24 @@ export function PropertiesPage() {
             <div className="space-y-xs mb-lg">
               <label className="font-label-md text-label-md text-on-surface-variant block">प्रोजेक्ट स्थिति</label>
               <div className="space-y-2">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    defaultChecked
-                    className="rounded border-outline-variant text-primary focus:ring-0"
-                    type="checkbox"
-                  />
-                  <span className="font-body-sm">तुरंत रहने योग्य</span>
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input className="rounded border-outline-variant text-primary focus:ring-0" type="checkbox" />
-                  <span className="font-body-sm">निर्माणाधीन</span>
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input className="rounded border-outline-variant text-primary focus:ring-0" type="checkbox" />
-                  <span className="font-body-sm">ऑफ-प्लान</span>
-                </label>
+                {STATUS_OPTIONS.map((status) => (
+                  <label key={status} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      checked={statuses.includes(status)}
+                      className="rounded border-outline-variant text-primary focus:ring-0"
+                      type="checkbox"
+                      onChange={() => toggleStatus(status)}
+                    />
+                    <span className="font-body-sm">{status}</span>
+                  </label>
+                ))}
               </div>
             </div>
-            <button className="w-full rounded bg-primary py-3 font-label-md text-label-md text-on-primary transition-all hover:opacity-90">
+            <button
+              type="button"
+              className="w-full rounded bg-primary py-3 font-label-md text-label-md text-on-primary transition-all hover:opacity-90"
+              onClick={() => setAppliedTick((n) => n + 1)}
+            >
               खोज लागू करें
             </button>
           </div>
@@ -174,25 +323,38 @@ export function PropertiesPage() {
                 चुनिंदा प्रॉपर्टी
               </h1>
               <p className="font-body-md text-on-surface-variant">
-                कैटलॉग से {availableProjects.length} लिस्टिंग दिख रही हैं
+                कैटलॉग से {filtered.length} लिस्टिंग दिख रही हैं
               </p>
             </div>
             <div className="flex items-center gap-sm">
               <span className="font-label-md text-label-md text-on-surface-variant">क्रम:</span>
-              <select className="border-none bg-transparent font-label-md text-label-md text-primary focus:ring-0 cursor-pointer">
-                <option>नवीनतम पहले</option>
-                <option>कीमत: कम से अधिक</option>
-                <option>कीमत: अधिक से कम</option>
-                <option>क्षेत्रफल: सबसे बड़ा</option>
+              <select
+                className="border-none bg-transparent font-label-md text-label-md text-primary focus:ring-0 cursor-pointer"
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as SortOption)}
+              >
+                <option value="newest">नवीनतम पहले</option>
+                <option value="price-asc">कीमत: कम से अधिक</option>
+                <option value="price-desc">कीमत: अधिक से कम</option>
+                <option value="area">क्षेत्रफल: सबसे बड़ा</option>
               </select>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-            {availableProjects.map((project) => (
-              <PropertyCard key={project.id} project={project} />
-            ))}
-          </div>
+          {filtered.length === 0 ? (
+            <div className="rounded-lg border border-outline-variant bg-surface-container-lowest p-xl text-center">
+              <p className="font-headline-sm text-headline-sm text-primary mb-xs">कोई प्रॉपर्टी नहीं मिली</p>
+              <p className="font-body-md text-on-surface-variant">
+                फ़िल्टर बदलकर फिर से खोजें — पिथौरागढ़, उत्तराखंड की भूमि उपलब्ध है।
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+              {filtered.map((project) => (
+                <PropertyCard key={project.id} project={project} />
+              ))}
+            </div>
+          )}
         </section>
       </main>
     </>

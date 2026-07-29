@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { BrandLogo } from './BrandLogo'
 import { Icon } from './Icon'
 
 const links = [
@@ -42,13 +43,7 @@ export function SiteHeader({
   return (
     <header className="sticky top-0 z-50 w-full border-b border-outline-variant bg-surface-container-lowest/95 backdrop-blur-md">
       <nav className="mx-auto flex h-20 max-w-max-width items-center justify-between px-margin-mobile md:px-margin-desktop">
-        <Link
-          to="/"
-          className="font-headline-md text-headline-md font-bold tracking-tighter text-primary"
-          onClick={() => setMenuOpen(false)}
-        >
-          Structura
-        </Link>
+        <BrandLogo onClick={() => setMenuOpen(false)} />
 
         <div className="hidden items-center gap-lg md:flex">
           {links.map((link) => (

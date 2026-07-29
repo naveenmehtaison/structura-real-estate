@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { BrandLogo } from './BrandLogo'
 import { Icon } from './Icon'
 
 export function SiteFooter() {
@@ -6,15 +7,12 @@ export function SiteFooter() {
     <footer className="mt-auto w-full border-t border-outline-variant bg-surface-container-highest">
       <div className="mx-auto grid max-w-max-width grid-cols-1 gap-gutter px-margin-mobile py-xl md:grid-cols-4 md:px-margin-desktop">
         <div>
-          <Link
-            to="/"
-            className="mb-md block font-headline-md text-headline-md font-bold tracking-tighter text-primary"
-          >
-            Structura
-          </Link>
+          <div className="mb-md">
+            <BrandLogo />
+          </div>
           <p className="mb-md font-body-sm text-body-sm text-on-surface-variant">
-            1994 से आर्किटेक्चरल उत्कृष्टता। भरोसे और सटीकता के साथ बेहतरीन आवासीय व व्यावसायिक
-            स्थान बनाना।
+            5+ वर्षों से उत्तराखंड में भूमि खरीद-बिक्री में विशेषज्ञता। भरोसे और पारदर्शिता के साथ
+            पिथौरागढ़ और आसपास की प्रॉपर्टी सेवाएँ।
           </p>
           <div className="flex gap-sm">
             <a
@@ -139,7 +137,7 @@ export function SiteFooter() {
 
       <div className="mx-auto max-w-max-width border-t border-outline-variant/30 px-margin-mobile py-md md:px-margin-desktop">
         <p className="font-label-sm text-label-sm text-on-surface-variant">
-          © 2024 Structura Architectural Excellence. सर्वाधिकार सुरक्षित।
+          © 2024 हिमालय होम्स। सर्वाधिकार सुरक्षित।
         </p>
       </div>
     </footer>

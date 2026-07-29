@@ -57,10 +57,10 @@ export function ConstructionPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
       <div className="bg-surface-container-lowest border border-outline-variant p-md flex flex-col transition-all worker-card">
       <div className="flex gap-md items-start mb-md">
-      <img className="w-24 h-24 object-cover rounded-lg" alt="Marcus Thorne" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtJm4DRJH3yAs1JyrQcQjFXsBlh-DUrl0EeVVjRar-D7t-lgZ0ZNJwY_pTpwe2Kq4Ye-Y8dXa1e0dplG455vdiWw9Tk8nHkZMZ4ZLF41yAKAABBWa8JFiJY4lVv7McTOnit3ixFkWTm2GtHYArP5_8JKykBH7wK4iagn6UjLUpZIEB_OmAaksDkgc6j12rZK6cARU-U_RfZsHStwRpkNfn_O-b5w37isTk10x2tQOcG48iY1k_P4PouU_JkTRfRKtDtScshu2_MDtO"/>
+      <img className="w-24 h-24 object-cover rounded-lg" alt="राहुल जोशी" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtJm4DRJH3yAs1JyrQcQjFXsBlh-DUrl0EeVVjRar-D7t-lgZ0ZNJwY_pTpwe2Kq4Ye-Y8dXa1e0dplG455vdiWw9Tk8nHkZMZ4ZLF41yAKAABBWa8JFiJY4lVv7McTOnit3ixFkWTm2GtHYArP5_8JKykBH7wK4iagn6UjLUpZIEB_OmAaksDkgc6j12rZK6cARU-U_RfZsHStwRpkNfn_O-b5w37isTk10x2tQOcG48iY1k_P4PouU_JkTRfRKtDtScshu2_MDtO"/>
       <div className="flex-1">
       <div className="flex justify-between items-start gap-sm">
-      <h3 className="font-headline-sm text-headline-sm text-[20px]">Marcus Thorne</h3>
+      <h3 className="font-headline-sm text-headline-sm text-[20px]">राहुल जोशी</h3>
       <span className="bg-tertiary-fixed text-on-tertiary-fixed px-xs py-[2px] font-label-sm rounded text-[10px] whitespace-nowrap">अभी उपलब्ध</span>
       </div>
       <p className="text-on-surface-variant font-label-md">मास्टर इलेक्ट्रीशियन</p>
@@ -81,7 +81,7 @@ export function ConstructionPage() {
       </div>
       <div>
       <p className="font-label-sm text-label-sm text-on-surface-variant">प्रति घंटा दर</p>
-      <p className="font-label-md text-label-md font-bold">$85.00</p>
+      <p className="font-label-md text-label-md font-bold">₹85.00</p>
       </div>
       </div>
       <div className="mb-md">
@@ -96,10 +96,10 @@ export function ConstructionPage() {
 
       <div className="bg-surface-container-lowest border border-outline-variant p-md flex flex-col transition-all worker-card">
       <div className="flex gap-md items-start mb-md">
-      <img className="w-24 h-24 object-cover rounded-lg" alt="Elena Rodriguez" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPVvrulsgbDPr-IWg0JoKF98R3j9QC-s_RxcEGQMJY2900SYRODC1CPTnELJj2BDrs0bQyoqTcOPOdO3s6p3EzZORwk0x5nYn6QKqH516Ds_fFj9rclvWgZpWGOcczIrYm_McVonFZZ1EqUd1WJQuKli5CoMIZXM8tR5XHRfKMiVicBNtMiuuNRtAmby0LwKRQzi6Gicp8AA3kqMlNf9xo07eF3oJ1cIO8ihI9tJHbH6kN6I0w_ASVYapJt-wfS8q1_2sNA0KlFu8K"/>
+      <img className="w-24 h-24 object-cover rounded-lg" alt="अंजलि गुप्ता" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPVvrulsgbDPr-IWg0JoKF98R3j9QC-s_RxcEGQMJY2900SYRODC1CPTnELJj2BDrs0bQyoqTcOPOdO3s6p3EzZORwk0x5nYn6QKqH516Ds_fFj9rclvWgZpWGOcczIrYm_McVonFZZ1EqUd1WJQuKli5CoMIZXM8tR5XHRfKMiVicBNtMiuuNRtAmby0LwKRQzi6Gicp8AA3kqMlNf9xo07eF3oJ1cIO8ihI9tJHbH6kN6I0w_ASVYapJt-wfS8q1_2sNA0KlFu8K"/>
       <div className="flex-1">
       <div className="flex justify-between items-start gap-sm">
-      <h3 className="font-headline-sm text-headline-sm text-[20px]">Elena Rodriguez</h3>
+      <h3 className="font-headline-sm text-headline-sm text-[20px]">अंजलि गुप्ता</h3>
       <span className="bg-surface-container-highest text-on-surface-variant px-xs py-[2px] font-label-sm rounded text-[10px] whitespace-nowrap">प्रोजेक्ट में</span>
       </div>
       <p className="text-on-surface-variant font-label-md">सीनियर इलेक्ट्रीशियन</p>
@@ -120,7 +120,7 @@ export function ConstructionPage() {
       </div>
       <div>
       <p className="font-label-sm text-label-sm text-on-surface-variant">प्रति घंटा दर</p>
-      <p className="font-label-md text-label-md font-bold">$92.00</p>
+      <p className="font-label-md text-label-md font-bold">₹92.00</p>
       </div>
       </div>
       <div className="mb-md">
@@ -135,10 +135,10 @@ export function ConstructionPage() {
 
       <div className="bg-surface-container-lowest border border-outline-variant p-md flex flex-col transition-all worker-card">
       <div className="flex gap-md items-start mb-md">
-      <img className="w-24 h-24 object-cover rounded-lg" alt="David Chen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2Cucgay85OITk6L_FnaEefUS01dUvyyjvYBtOnmPg40vm-n3NaxAFJgKFlEKa9nrRJKo_oT7g0z-m3J_RjWe8DQPAudAqbo0_wa8xoEWrKqoyNPF8MivrfxenXxYOeB5ptGbGurQtvcl0QXNXvLhOeXdVS3QsfKMaZV8IJj32Xv3E-Uuj4AUSlR5W6ay1dJ4UkllNt8Jn9UEMORrykGy2nAJWDwzT8CCxoz-gQ7FkbYwTmE2BwLLE1LcXx7i6gen3-1_YDbyMUHOG"/>
+      <img className="w-24 h-24 object-cover rounded-lg" alt="अरजुन शर्मा" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2Cucgay85OITk6L_FnaEefUS01dUvyyjvYBtOnmPg40vm-n3NaxAFJgKFlEKa9nrRJKo_oT7g0z-m3J_RjWe8DQPAudAqbo0_wa8xoEWrKqoyNPF8MivrfxenXxYOeB5ptGbGurQtvcl0QXNXvLhOeXdVS3QsfKMaZV8IJj32Xv3E-Uuj4AUSlR5W6ay1dJ4UkllNt8Jn9UEMORrykGy2nAJWDwzT8CCxoz-gQ7FkbYwTmE2BwLLE1LcXx7i6gen3-1_YDbyMUHOG"/>
       <div className="flex-1">
       <div className="flex justify-between items-start gap-sm">
-      <h3 className="font-headline-sm text-headline-sm text-[20px]">David Chen</h3>
+      <h3 className="font-headline-sm text-headline-sm text-[20px]">अरजुन शर्मा</h3>
       <span className="bg-tertiary-fixed text-on-tertiary-fixed px-xs py-[2px] font-label-sm rounded text-[10px] whitespace-nowrap">अभी उपलब्ध</span>
       </div>
       <p className="text-on-surface-variant font-label-md">जर्नीमैन इलेक्ट्रीशियन</p>
@@ -159,7 +159,7 @@ export function ConstructionPage() {
       </div>
       <div>
       <p className="font-label-sm text-label-sm text-on-surface-variant">प्रति घंटा दर</p>
-      <p className="font-label-md text-label-md font-bold">$65.00</p>
+      <p className="font-label-md text-label-md font-bold">₹65.00</p>
       </div>
       </div>
       <div className="mb-md">
@@ -186,7 +186,7 @@ export function ConstructionPage() {
       <div className="flex flex-col gap-xs">
       <span className="material-symbols-outlined text-primary" style={{ fontSize: '40px' }}>security</span>
       <h4 className="font-label-md text-label-md">प्रोजेक्ट बीमा</h4>
-      <p className="font-body-sm text-body-sm text-on-surface-variant">Structura के ज़रिए बुक किया गया हर काम व्यापक देयता सुरक्षा में आता है।</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">हिमालय होम्स के ज़रिए बुक किया गया हर काम व्यापक देयता सुरक्षा में आता है।</p>
       </div>
       <div className="flex flex-col gap-xs">
       <span className="material-symbols-outlined text-primary" style={{ fontSize: '40px' }}>payments</span>

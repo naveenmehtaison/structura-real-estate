@@ -3,8 +3,8 @@ export function ContactPage() {
     <>
 <main className="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop py-xl">
       <div className="mb-xl text-center md:text-left">
-      <h1 className="font-display-lg text-display-lg text-primary mb-base">Structura से जुड़ें</h1>
-      <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">उत्कृष्टता के लिए खुली बातचीत ज़रूरी है। आपके अगले प्रोजेक्ट पर चर्चा का इंतज़ार रहेगा।</p>
+      <h1 className="font-display-lg text-display-lg text-primary mb-base">हिमालय होम्स से जुड़ें</h1>
+      <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">उत्तराखंड में भूमि खरीद-बिक्री के लिए खुली बातचीत ज़रूरी है। आपके अगले सौदे पर चर्चा का इंतज़ार रहेगा।</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
       <section className="md:col-span-7 bg-surface-container-lowest border border-outline-variant p-lg md:p-xl rounded shadow-sm">
@@ -24,9 +24,9 @@ export function ContactPage() {
       <label className="font-label-md text-label-md block text-on-surface-variant" htmlFor="subject">विषय</label>
       <select className="field-input w-full rounded px-sm py-2 font-body-md text-body-md" id="subject" name="subject" required={true}>
       <option value="">विषय चुनें</option>
-      <option value="residential">आवासीय पूछताछ</option>
-      <option value="commercial">व्यावसायिक विकास</option>
-      <option value="consultation">डिज़ाइन परामर्श</option>
+      <option value="residential">भूमि खरीद</option>
+      <option value="commercial">भूमि बिक्री</option>
+      <option value="consultation">मूल्यांकन परामर्श</option>
       <option value="careers">करियर और साझेदारी</option>
       </select>
       </div>
@@ -47,21 +47,21 @@ export function ContactPage() {
       <span className="material-symbols-outlined text-primary">location_on</span>
       <div>
       <p className="font-label-md text-label-md text-on-surface mb-base">मुख्यालय</p>
-      <p className="font-body-sm text-body-sm text-on-surface-variant">482 Architectural Way, Suite 100<br/>Design District, London, SW1A 1AA</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">नजदीक मुख्य बाज़ार, पिथौरागढ़<br/>उत्तराखंड, 262501</p>
       </div>
       </div>
       <div className="flex gap-md">
       <span className="material-symbols-outlined text-primary">call</span>
       <div>
       <p className="font-label-md text-label-md text-on-surface mb-base">फ़ोन और सहायता</p>
-      <p className="font-body-sm text-body-sm text-on-surface-variant">+44 (0) 20 7946 0123</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">+91 98765 43210</p>
       </div>
       </div>
       <div className="flex gap-md">
       <span className="material-symbols-outlined text-primary">mail</span>
       <div>
       <p className="font-label-md text-label-md text-on-surface mb-base">ईमेल पूछताछ</p>
-      <p className="font-body-sm text-body-sm text-on-surface-variant">office@structura-arch.com</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">office@himalayahomes.in</p>
       </div>
       </div>
       <div className="flex gap-md">
@@ -106,8 +106,8 @@ export function ContactPage() {
       </div>
       </div>
       <div className="absolute bottom-lg left-margin-desktop bg-white p-md rounded shadow-lg border border-outline-variant max-w-xs hidden md:block">
-      <p className="font-label-md text-label-md text-primary mb-base">Structura मुख्य कार्यालय</p>
-      <p className="font-body-sm text-body-sm text-on-surface-variant">उत्तर गेट से प्रवेश। विज़िटर पार्किंग बेसमेंट B2 में उपलब्ध।</p>
+      <p className="font-label-md text-label-md text-primary mb-base">हिमालय होम्स मुख्य कार्यालय</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">पिथौरागढ़, उत्तराखंड। विज़िटर पार्किंग उपलब्ध।</p>
       <button className="mt-md text-primary font-label-sm text-label-sm underline hover:no-underline">दिशा-निर्देश लें</button>
       </div>
       </div>

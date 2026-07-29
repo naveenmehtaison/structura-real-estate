@@ -16,12 +16,12 @@ export function HomePage() {
       <div className="absolute bottom-1/4 left-1/3 w-48 h-48 bg-primary-fixed/10 blur-3xl animate-float" style={{ animationDelay: '-2s' }}></div>
       <div className="relative z-10 max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop w-full">
       <div className="max-w-2xl reveal-on-scroll" id="hero-content">
-      <span className="inline-block px-sm py-1 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm rounded mb-sm">स्थापना 1994</span>
+      <span className="inline-block px-sm py-1 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm rounded mb-sm">5+ वर्षों का अनुभव</span>
       <h1 className="font-display-lg text-white text-display-lg lg:text-[64px] lg:leading-[72px] mb-md tracking-tight">
-                          आपका भविष्य बनाएँ, <span className="text-secondary-fixed">अपना घर पाएँ</span>
+                          निर्माण में भरोसा, <span className="text-secondary-fixed">निवास में सुकून</span>
       </h1>
       <p className="font-body-lg text-body-lg text-white/80 mb-lg max-w-lg leading-relaxed">
-                          दशकों का आर्किटेक्चरल अनुभव और भरोसेमंद प्रॉपर्टी सेवा। हम ब्लूप्रिंट को विरासत में बदलते हैं, और घरों को सुकून की जगह।
+                          उत्तराखंड में भूमि खरीद-बिक्री के विशेषज्ञ। हिमालय होम्स के साथ पिथौरागढ़ और आसपास की जाँची-परखी प्रॉपर्टी।
                       </p>
       <div className="flex flex-wrap gap-md">
       <Link to="/portfolio" className="bg-white text-primary px-xl py-md font-label-md text-label-md rounded hover:scale-105 active:scale-95 transition-all flex items-center gap-xs shadow-xl shadow-black/20">
@@ -46,9 +46,9 @@ export function HomePage() {
       <span className="material-symbols-outlined text-primary text-[32px]">history</span>
       </div>
       <h3 className="font-headline-sm text-headline-sm text-primary mb-xs">
-      <span className="counter" data-target="30">0</span>+ वर्ष
+      <span className="counter" data-target="5">0</span>+ वर्ष
                       </h3>
-      <p className="font-body-sm text-body-sm text-on-surface-variant">डिज़ाइन और इंजीनियरिंग का अनुभव</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">उत्तराखंड रियल एस्टेट का अनुभव</p>
       </div>
       <div className="flex flex-col items-center text-center p-lg bg-surface-container-lowest border border-outline-variant rounded hover:shadow-lg transition-all duration-500 group reveal-on-scroll" style={{ transitionDelay: '100ms' }}>
       <div className="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
@@ -75,7 +75,7 @@ export function HomePage() {
       <div className="flex flex-col md:flex-row justify-between items-end mb-xl reveal-on-scroll">
       <div className="max-w-xl">
       <h2 className="font-headline-md text-headline-md text-primary mb-xs">चुनिंदा प्रॉपर्टी</h2>
-      <p className="font-body-md text-body-md text-on-surface-variant">आपके भविष्य के लिए चुने हुए निवेश — टिकाऊ डिज़ाइन और प्रीमियम फिनिश के साथ।</p>
+      <p className="font-body-md text-body-md text-on-surface-variant">पिथौरागढ़, उत्तराखंड में चुनिंदा भूमि और आवासीय निवेश विकल्प।</p>
       </div>
       <Link className="group text-primary font-label-md text-label-md flex items-center gap-xs hover:gap-md transition-all" to="/properties">
                       सभी प्रॉपर्टी देखें <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
@@ -157,29 +157,29 @@ export function HomePage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
       <div className="bg-white p-lg rounded-xl flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-500 reveal-on-scroll border border-outline-variant/30">
       <p className="font-body-lg italic text-on-surface-variant mb-lg leading-relaxed">
-                              "Structura ने हमारे मुख्यालय का नवीनीकरण बेहद सटीकता से पूरा किया। संरचना पर उनका ध्यान असाधारण था, और हर पड़ाव पर हमें जानकारी मिलती रही। सच में भरोसेमंद साझेदार।"
+                              "हिमालय होम्स ने पिथौरागढ़ में हमारी भूमि खरीद बेहद पारदर्शिता से पूरी की। हर कागज़ और नाप की जाँच उन्होंने खुद सुनिश्चित की। सच में भरोसेमंद साझेदार।"
                           </p>
       <div className="flex items-center gap-md">
       <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary-fixed group">
-      <img alt="David Chen" className="w-full h-full object-cover transition-transform group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABBsU8_H0K_Pv3BiTqqAXvNLnTTwK_wBhCMm1ZFW4zMBYfcSaM8EmZMtcp0RlsJeYQJboZwVo75pr94OtVPXYu69ny_Npf6sG_0snrRlNxvC0hl7oxU-HNduxConAa7kTK1uGRIKlJ101IHF-2EIAVm6k6aJfxk_W9_up5ZUK1Y_Z1t0eWTfH0-p9ygSP3zIk6iu-y4UdcRBKUZ-qvK4lIDbCdXTvYTCad2QtMbBWCOSy7UML2zaKFW3DXC1KEpz0tcS-NV_xv9LDh"/>
+      <img alt="अरजुन शर्मा" className="w-full h-full object-cover transition-transform group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABBsU8_H0K_Pv3BiTqqAXvNLnTTwK_wBhCMm1ZFW4zMBYfcSaM8EmZMtcp0RlsJeYQJboZwVo75pr94OtVPXYu69ny_Npf6sG_0snrRlNxvC0hl7oxU-HNduxConAa7kTK1uGRIKlJ101IHF-2EIAVm6k6aJfxk_W9_up5ZUK1Y_Z1t0eWTfH0-p9ygSP3zIk6iu-y4UdcRBKUZ-qvK4lIDbCdXTvYTCad2QtMbBWCOSy7UML2zaKFW3DXC1KEpz0tcS-NV_xv9LDh"/>
       </div>
       <div>
-      <p className="font-label-md text-label-md text-primary">David Chen</p>
-      <p className="font-body-sm text-body-sm text-on-surface-variant">CEO, Nexus Global Tech</p>
+      <p className="font-label-md text-label-md text-primary">अरजुन शर्मा</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">व्यवसायी, अल्मोड़ा</p>
       </div>
       </div>
       </div>
       <div className="bg-white p-lg rounded-xl flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-500 reveal-on-scroll border border-outline-variant/30" style={{ transitionDelay: '100ms' }}>
       <p className="font-body-lg italic text-on-surface-variant mb-lg leading-relaxed">
-                              "हमारा हमेशा का घर ढूँढना तनावपूर्ण था, जब तक Structura से मुलाकात नहीं हुई। वे सिर्फ लिस्टिंग नहीं दिखा रहे थे — वे हमें वहाँ का जीवन कल्पना करने में मदद कर रहे थे। उनकी जाँची-परखी प्रॉपर्टी से हमें सुकून मिला।"
+                              "हमारा हमेशा का घर ढूँढना तनावपूर्ण था, जब तक हिमालय होम्स से मुलाकात नहीं हुई। वे सिर्फ लिस्टिंग नहीं दिखा रहे थे — वे हमें पहाड़ी जीवन की कल्पना करने में मदद कर रहे थे। उनकी जाँची-परखी भूमि से हमें सुकून मिला।"
                           </p>
       <div className="flex items-center gap-md">
       <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary-fixed group">
-      <img alt="Sarah Jennings" className="w-full h-full object-cover transition-transform group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs44_KvtcVm-NsK6FlZbG3A7IsZJ0ktzxqPW-2ZeLLPAmEhF9F6-dr5sGjJ5hucfVF8rheiVsFWrvxBMv7ljDpcwQG9qCGL2B2cNVJ8ttb2nED8b-NJGWt6SCm5gYgpzNdc2irEqCQIcx-_xeUJ8aGE5_qNe4UTTWPgz6jAmD2QQv-5I2IuzXICLmB1IDtmE8jF1Bn9mZlMJIf7e5y_iY_ElONl0eS2iwdd1u7uYyq4mEWAFYkEJkqxak_2pAgsAD7MuLRnMQ7uypA"/>
+      <img alt="प्रिया मेहता" className="w-full h-full object-cover transition-transform group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs44_KvtcVm-NsK6FlZbG3A7IsZJ0ktzxqPW-2ZeLLPAmEhF9F6-dr5sGjJ5hucfVF8rheiVsFWrvxBMv7ljDpcwQG9qCGL2B2cNVJ8ttb2nED8b-NJGWt6SCm5gYgpzNdc2irEqCQIcx-_xeUJ8aGE5_qNe4UTTWPgz6jAmD2QQv-5I2IuzXICLmB1IDtmE8jF1Bn9mZlMJIf7e5y_iY_ElONl0eS2iwdd1u7uYyq4mEWAFYkEJkqxak_2pAgsAD7MuLRnMQ7uypA"/>
       </div>
       <div>
-      <p className="font-label-md text-label-md text-primary">Sarah Jennings</p>
-      <p className="font-body-sm text-body-sm text-on-surface-variant">गृहस्वामी और डिज़ाइनर</p>
+      <p className="font-label-md text-label-md text-primary">प्रिया मेहता</p>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">गृहस्वामी, पिथौरागढ़</p>
       </div>
       </div>
       </div>
@@ -193,7 +193,7 @@ export function HomePage() {
       <div className="relative z-10 p-xl md:p-[100px] text-center flex flex-col items-center">
       <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-md reveal-on-scroll">क्या आप अपनी यात्रा शुरू करने को तैयार हैं?</h2>
       <p className="font-body-lg text-body-lg text-white/80 mb-xl max-w-2xl mx-auto reveal-on-scroll" style={{ transitionDelay: '100ms' }}>
-                          चाहे अगला लग्ज़री घर हो या व्यावसायिक प्रोजेक्ट का प्रबंधन — हमारे सलाहकार आपकी मदद के लिए तैयार हैं।
+                          चाहे उत्तराखंड में भूमि खरीदनी हो या बेचनी — हमारे सलाहकार आपकी मदद के लिए तैयार हैं।
                       </p>
       <div className="flex flex-wrap justify-center gap-md reveal-on-scroll" style={{ transitionDelay: '200ms' }}>
       <Link to="/contact" className="rounded-full bg-white px-xl py-md font-label-md text-label-md font-bold text-primary shadow-lg shadow-black/10 transition-all hover:bg-surface active:scale-95">

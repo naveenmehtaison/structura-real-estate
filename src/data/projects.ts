@@ -7,6 +7,12 @@
  */
 
 export type PropertyCategory = 'residential' | 'commercial' | 'land'
+export type ListingType = 'sale' | 'rent'
+export type PropertyTypeFilter =
+  | 'villa'
+  | 'penthouse'
+  | 'commercial'
+  | 'apartment'
 
 export type ProjectMeta = {
   /** URL slug, e.g. `project-1` */
@@ -21,6 +27,8 @@ export type ProjectMeta = {
   baths?: number
   area: string
   category: PropertyCategory
+  listingType: ListingType
+  propertyType: PropertyTypeFilter
   /** Listing status chip text */
   status: string
   description: string
@@ -34,134 +42,150 @@ export type ProjectMeta = {
   distanceNote?: string
 }
 
+const LOCATION = 'Pithoragarh, Uttarakhand'
+
 /** Placeholder metadata — edit this object when real data arrives. */
 export const PROJECTS: ProjectMeta[] = [
   {
     id: 'project-1',
     assetFolder: '1',
     name: 'प्रोजेक्ट 1 आवास',
-    location: 'लोकेशन जल्द अपडेट होगी',
-    price: '$1,850,000',
+    location: LOCATION,
+    price: '₹1,850,000',
     priceValue: 1850000,
     beds: 4,
     baths: 3,
     area: '3,200 वर्ग फुट',
     category: 'residential',
+    listingType: 'sale',
+    propertyType: 'villa',
     status: 'तुरंत रहने योग्य',
     description:
-      'प्रोजेक्ट 1 का अस्थायी विवरण। असली लिस्टिंग जानकारी मिलने पर यहाँ अपडेट करें।',
+      'पिथौरागढ़ में स्थित यह आवास उत्तराखंड की भूमि पर भरोसेमंद निवेश का विकल्प है।',
     sold: false,
     featured: true,
     badge: 'विशेष',
-    nearby: 'विवरण जल्द',
-    distanceNote: 'दूरी जल्द',
+    nearby: 'मुख्य बाज़ार',
+    distanceNote: 'राजमार्ग से 2 किमी',
   },
   {
     id: 'project-2',
     assetFolder: '2',
     name: 'प्रोजेक्ट 2 आवास',
-    location: 'लोकेशन जल्द अपडेट होगी',
-    price: '$2,100,000',
+    location: LOCATION,
+    price: '₹2,100,000',
     priceValue: 2100000,
     beds: 3,
     baths: 3,
     area: '2,800 वर्ग फुट',
     category: 'residential',
+    listingType: 'sale',
+    propertyType: 'apartment',
     status: 'पूर्ण',
     description:
-      'प्रोजेक्ट 2 का अस्थायी विवरण। असली लिस्टिंग जानकारी मिलने पर यहाँ अपडेट करें।',
+      'पहाड़ी नज़ारे वाली यह आवासीय प्रॉपर्टी परिवार और निवेश दोनों के लिए उपयुक्त है।',
     sold: false,
     featured: true,
-    nearby: 'विवरण जल्द',
-    distanceNote: 'दूरी जल्द',
+    nearby: 'स्कूल एवं मंदिर',
+    distanceNote: 'शहर केंद्र से 3 किमी',
   },
   {
     id: 'project-3',
     assetFolder: '3',
     name: 'प्रोजेक्ट 3 एस्टेट',
-    location: 'लोकेशन जल्द अपडेट होगी',
-    price: '$3,400,000',
+    location: LOCATION,
+    price: '₹3,400,000',
     priceValue: 3400000,
     beds: 5,
     baths: 4,
     area: '4,600 वर्ग फुट',
     category: 'residential',
+    listingType: 'sale',
+    propertyType: 'villa',
     status: 'पूर्ण',
     description:
-      'प्रोजेक्ट 3 का अस्थायी विवरण। असली लिस्टिंग जानकारी मिलने पर यहाँ अपडेट करें।',
+      'विशाल भूखंड और खुली जगह के साथ यह एस्टेट उत्तराखंड में दीर्घकालिक निवास के लिए तैयार है।',
     sold: false,
     featured: true,
-    nearby: 'विवरण जल्द',
-    distanceNote: 'दूरी जल्द',
+    nearby: 'वन क्षेत्र',
+    distanceNote: 'राजमार्ग से 5 किमी',
   },
   {
     id: 'project-5',
     assetFolder: '5',
     name: 'प्रोजेक्ट 5 आवास',
-    location: 'लोकेशन जल्द अपडेट होगी',
-    price: '$2,750,000',
+    location: LOCATION,
+    price: '₹2,750,000',
     priceValue: 2750000,
     beds: 4,
     baths: 4,
     area: '3,850 वर्ग फुट',
     category: 'residential',
+    listingType: 'sale',
+    propertyType: 'villa',
     status: 'तुरंत रहने योग्य',
     description:
-      'प्रोजेक्ट 5 का अस्थायी विवरण। असली लिस्टिंग जानकारी मिलने पर यहाँ अपडेट करें।',
+      'तुरंत रहने योग्य यह प्रॉपर्टी पिथौरागढ़ की भूमि पर सुकून भरा निवास प्रदान करती है।',
     sold: false,
     featured: true,
     badge: 'विशेष',
-    nearby: 'विवरण जल्द',
-    distanceNote: 'दूरी जल्द',
+    nearby: 'अस्पताल',
+    distanceNote: 'बाजार से 1.5 किमी',
   },
   {
     id: 'project-10',
     assetFolder: '10',
     name: 'प्रोजेक्ट 10 व्यावसायिक',
-    location: 'लोकेशन जल्द अपडेट होगी',
-    price: '$1,450,000',
+    location: LOCATION,
+    price: '₹1,450,000',
     priceValue: 1450000,
     area: 'मिश्रित उपयोग',
     category: 'commercial',
+    listingType: 'sale',
+    propertyType: 'commercial',
     status: 'निर्माणाधीन',
     description:
-      'प्रोजेक्ट 10 का अस्थायी विवरण। असली लिस्टिंग जानकारी मिलने पर यहाँ अपडेट करें।',
+      'उत्तराखंड में व्यावसायिक उपयोग हेतु मिश्रित भूमि — दुकान या छोटे कार्यालय के लिए उपयुक्त।',
     sold: false,
-    nearby: 'विवरण जल्द',
-    distanceNote: 'दूरी जल्द',
+    nearby: 'मुख्य सड़क',
+    distanceNote: 'बाजार से 500 मी',
   },
   {
     id: 'project-11',
     assetFolder: '11',
     name: 'प्रोजेक्ट 11 आवास',
-    location: 'लोकेशन जल्द अपडेट होगी',
-    price: '$980,000',
-    priceValue: 980000,
+    location: LOCATION,
+    price: '₹45,000/माह',
+    priceValue: 45000,
     beds: 3,
     baths: 2,
     area: '2,100 वर्ग फुट',
     category: 'residential',
+    listingType: 'rent',
+    propertyType: 'apartment',
     status: 'ऑफ-प्लान',
     description:
-      'प्रोजेक्ट 11 का अस्थायी विवरण। असली लिस्टिंग जानकारी मिलने पर यहाँ अपडेट करें।',
+      'किराए के लिए उपलब्ध यह आवास पिथौरागढ़ में सुविधाजनक लोकेशन पर स्थित है।',
     sold: false,
-    nearby: 'विवरण जल्द',
-    distanceNote: 'दूरी जल्द',
+    nearby: 'बस स्टैंड',
+    distanceNote: 'केंद्र से 2 किमी',
   },
   {
     id: 'project-4',
     assetFolder: '4sold',
     name: 'प्रोजेक्ट 4 आवास',
-    location: 'लोकेशन जल्द अपडेट होगी',
-    price: '$2,450,000',
+    location: LOCATION,
+    price: '₹2,450,000',
     priceValue: 2450000,
     beds: 4,
     baths: 3,
     area: '3,400 वर्ग फुट',
     category: 'residential',
+    listingType: 'sale',
+    propertyType: 'villa',
     status: 'बिक चुकी',
     description:
-      'बिक चुके प्रोजेक्ट 4 का अस्थायी विवरण। असली जानकारी मिलने पर अपडेट करें।',
+      'पिथौरागढ़ में सफलतापूर्वक बेची गई आवासीय प्रॉपर्टी।',
     sold: true,
     dateSold: '14 अक्तूबर 2024',
     typeLabel: 'आवासीय',
@@ -170,16 +194,18 @@ export const PROJECTS: ProjectMeta[] = [
     id: 'project-6',
     assetFolder: '6sold',
     name: 'प्रोजेक्ट 6 आवास',
-    location: 'लोकेशन जल्द अपडेट होगी',
-    price: '$3,100,000',
+    location: LOCATION,
+    price: '₹3,100,000',
     priceValue: 3100000,
     beds: 5,
     baths: 4,
     area: '4,200 वर्ग फुट',
     category: 'residential',
+    listingType: 'sale',
+    propertyType: 'villa',
     status: 'बिक चुकी',
     description:
-      'बिक चुके प्रोजेक्ट 6 का अस्थायी विवरण। असली जानकारी मिलने पर अपडेट करें।',
+      'उत्तराखंड में पूर्ण हुए सफल भूमि सौदे का उदाहरण।',
     sold: true,
     dateSold: '28 सितंबर 2024',
     typeLabel: 'एस्टेट',
@@ -188,14 +214,16 @@ export const PROJECTS: ProjectMeta[] = [
     id: 'project-8',
     assetFolder: '8sold',
     name: 'प्रोजेक्ट 8 व्यावसायिक',
-    location: 'लोकेशन जल्द अपडेट होगी',
-    price: '$4,800,000',
+    location: LOCATION,
+    price: '₹4,800,000',
     priceValue: 4800000,
     area: 'व्यावसायिक',
     category: 'commercial',
+    listingType: 'sale',
+    propertyType: 'commercial',
     status: 'बिक चुकी',
     description:
-      'बिक चुके प्रोजेक्ट 8 का अस्थायी विवरण। असली जानकारी मिलने पर अपडेट करें।',
+      'पिथौरागढ़ में बिक चुकी व्यावसायिक भूमि।',
     sold: true,
     dateSold: '12 अगस्त 2024',
     typeLabel: 'व्यावसायिक',
@@ -204,16 +232,18 @@ export const PROJECTS: ProjectMeta[] = [
     id: 'project-9',
     assetFolder: '9sold',
     name: 'प्रोजेक्ट 9 आवास',
-    location: 'लोकेशन जल्द अपडेट होगी',
-    price: '$1,750,000',
+    location: LOCATION,
+    price: '₹1,750,000',
     priceValue: 1750000,
     beds: 3,
     baths: 3,
     area: '2,600 वर्ग फुट',
     category: 'residential',
+    listingType: 'sale',
+    propertyType: 'apartment',
     status: 'बिक चुकी',
     description:
-      'बिक चुके प्रोजेक्ट 9 का अस्थायी विवरण। असली जानकारी मिलने पर अपडेट करें।',
+      'हिमालय होम्स द्वारा पूर्ण किया गया आवासीय सौदा।',
     sold: true,
     dateSold: '30 जुलाई 2024',
     typeLabel: 'आवासीय',
@@ -302,4 +332,13 @@ export const categoryAccent: Record<
     border: 'border-ochre',
     label: 'भूमि / मिश्रित',
   },
+}
+
+export function formatPriceLabel(value: number, listingType: ListingType): string {
+  if (listingType === 'rent') {
+    return `₹${value.toLocaleString('en-IN')}/माह`
+  }
+  if (value >= 10_000_000) return `₹${(value / 10_000_000).toFixed(1)} करोड़+`
+  if (value >= 100_000) return `₹${Math.round(value / 100_000)} लाख`
+  return `₹${value.toLocaleString('en-IN')}`
 }
